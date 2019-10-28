@@ -1,0 +1,89 @@
+<changelist name="it's_first_commit,_because_I_think_it_a_time" date="1572276844685" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/shelved.patch" />
+  <option name="DESCRIPTION" value="it's first commit, because I think it a time" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/caches/build_file_checksums.ser" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/build_file_checksums.ser" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="gradle/wrapper/gradle-wrapper.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/gradle-wrapper.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/assets/calculation01.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/calculation01.db" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/drawable-v24/ffr.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ffr.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/drawable-v24/grso.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/grso.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/drawable-v24/hjk.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/hjk.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/drawable-v24/ogtf.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ogtf.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-hdpi/ic_launcher.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-hdpi/ic_launcher_round.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher_round.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-mdpi/ic_launcher.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-mdpi/ic_launcher_round.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher_round1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xhdpi/ic_launcher.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher2.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xhdpi/ic_launcher_round.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher_round2.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher3.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xxhdpi/ic_launcher_round.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher_round3.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher4.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/it's_first_commit,_because_I_think_it_a_time/ic_launcher_round4.png" />
+  </binary>
+</changelist>
