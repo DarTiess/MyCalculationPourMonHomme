@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/ffr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-4dp">
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Месяц :: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"/>
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/monseName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+<TableRow>
+
+    <TextView
+        android:layout_weight="0.5"
+        android:text="&#8376; :: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"/>
+    <EditText
+        android:layout_weight="1"
+        android:id="@+id/moneyStart"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+</TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="кол-во недель :: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"/>
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/monse"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+               />
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Еда :: "
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+               />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/food"
+
+                android:text="15 000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/foodPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Недельные :: "
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/week"
+                android:text="15 000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/weekPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Маме :: "
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                />
+
+            <TextView
+                android:id="@+id/momme"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10 000" />
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/momPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Депозит :: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"/>
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/deposit"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/depositPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="НЗ :: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"/>
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/nz"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+
+                />
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/nzPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="1"
+                android:onClick="onClickGetResult"
+                android:text="Подсчет" />
+        </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_weight="0.5"
+            android:textSize="20dp"
+            android:text="итог :: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+           />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/end"
+            android:text="итог"
+
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+        <TextView
+            android:layout_weight="1"
+            android:text="%"
+            android:id="@+id/resultPourCent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          />
+    </TableRow>
+
+
+
+<TableRow>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавить"
+        android:onClick="add"
+        android:textSize="18dp"/>
+
+
+</TableRow>
+
+    </TableLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

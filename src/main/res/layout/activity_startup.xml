@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:paddingTop="?attr/actionBarSize">
+  <TextView
+      android:id="@+id/headers"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="22sp"
+      tools:layout_editor_absoluteX="44dp"
+      tools:layout_editor_absoluteY="26dp"
+      />
+  <Button
+      android:id="@+id/addNewOne"
+      android:layout_width="wrap_content"
+      android:layout_height="53dp"
+      android:onClick="addNewOne"
+      android:text="Add New Calculation" />
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="220dp"
+      android:scaleType="fitStart"
+      android:src="@drawable/hjk" />
+
+</LinearLayout>
