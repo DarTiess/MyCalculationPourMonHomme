@@ -10,18 +10,23 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    String[] msNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
 
+    Spinner msName;
+    TextView selection;
     TextView end;
     EditText money;
-EditText msName;
     EditText monse;
     TextView food;
     TextView week;
@@ -48,7 +53,7 @@ EditText msName;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        msName=(EditText)findViewById(R.id.monseName);
+      msName=(Spinner)findViewById(R.id.monseName);
 end=(TextView)findViewById(R.id.end);
 money=(EditText)findViewById(R.id.moneyStart);
 monse=(EditText)findViewById(R.id.monse);
@@ -60,6 +65,30 @@ momme=(TextView)findViewById(R.id.momme);
 //calculList=(ListView)findViewById(R.id.list);
 
 dbHelper=new DatabaseHelper(getApplicationContext());
+
+        selection = (TextView) findViewById(R.id.selection);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, msNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         msName.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Получаем выбранный объект
+                String item = (String)parent.getItemAtPosition(position);
+                selection.setText(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+        msName.setOnItemSelectedListener(itemSelectedListener);
+
+
 
         money.addTextChangedListener(new TextWatcher() {
 
@@ -381,7 +410,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
        // startActivity(intent);
 
         ContentValues cv = new ContentValues();
-        cv.put(DatabaseHelper.COLUMN_MSNAME, msName.getText().toString());
+        cv.put(DatabaseHelper.COLUMN_MSNAME,  selection.getText().toString());
         cv.put(DatabaseHelper.COLUMN_MONEY, money.getText().toString());
         cv.put(DatabaseHelper.COLUMN_ENDMONEY, Integer.parseInt(end.getText().toString()));
 
