@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Cursor calcCursor;
     SimpleCursorAdapter calcAdapter;
 
-
+    Bundle arguments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,8 @@ momme=(TextView)findViewById(R.id.momme);
 dbHelper=new DatabaseHelper(getApplicationContext());
 
         selection = (TextView) findViewById(R.id.selection);
+
+        arguments = getIntent().getExtras();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, msNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -122,7 +124,16 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 TextView textView = (TextView) findViewById(R.id.food);
                 textView.setText(String.valueOf(foodResult));
 
-               weekResult=Integer.parseInt( s.toString())*15000;
+                if(arguments!=null){
+
+                   weekResult = arguments.getInt("price");
+
+                }else{
+                    weekResult=15000;
+                }
+
+               // setContentView(textView);
+               weekResult=Integer.parseInt( s.toString())*weekResult;
                 TextView textView2 = (TextView) findViewById(R.id.week);
                 textView2.setText(String.valueOf(weekResult));
 
@@ -275,8 +286,8 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 startActivity(intent);
                 return true;
             case R.id.add_calculation:
-                headerView.setText("Добавить");
-                Intent intent1 = new Intent(this, StartupActivity.class);
+                headerView.setText("Недельные");
+                Intent intent1 = new Intent(this, WeekActivity.class);
                 startActivity(intent1);
                 return true;
 

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeekActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:paddingLeft="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Расчет недельных затрат"
+        android:textAlignment="center"
+        android:textSize="20dp"/>
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/chien"/>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <TableRow>
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Сумма "
+                android:layout_weight="20"/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Описание затрат на день"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Расчет за неделю"
+                android:layout_weight="1"
+                />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/road"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дорожные"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Расчет на неделю"
+                android:id="@+id/roadSum"
+                android:layout_weight="1"
+                />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/lunch"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Обед"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Расчет на неделю"
+                android:id="@+id/lunchSum"
+                android:layout_weight="1"
+                />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cigarret"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сигареты"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Расчет на неделю"
+                android:id="@+id/cigarreSum"
+                android:layout_weight="1"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_marginLeft="150dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="Подсчет"
+        android:onClick="getResultOfWeek"/>
+    <LinearLayout
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textAlignment="textEnd">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Итого затраты в неделю = " />
+
+        <TextView
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:text="итог"
+            android:id="@+id/resultOfWeek"/>
+    </LinearLayout>
+
+</LinearLayout>
