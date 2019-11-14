@@ -7,6 +7,10 @@
     <item
         android:id="@+id/add_calculation"
         android:orderInCategory="3"
-        android:title="Добавить инфо" />
+        android:title="Недельные" />
+    <item
+        android:id="@+id/add_foodCalculation"
+        android:orderInCategory="3"
+        android:title="Еда" />
 
 </menu>

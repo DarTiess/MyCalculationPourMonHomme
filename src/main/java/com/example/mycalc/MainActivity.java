@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     Cursor calcCursor;
     SimpleCursorAdapter calcAdapter;
 
+    DataBaseWeek dbWeekHelper;
+    SQLiteDatabase dbweek;
+    Cursor weekCursor;
+    SimpleCursorAdapter weekAdapter;
+
     Bundle arguments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ momme=(TextView)findViewById(R.id.momme);
 //calculList=(ListView)findViewById(R.id.list);
 
 dbHelper=new DatabaseHelper(getApplicationContext());
-
+        dbWeekHelper=new DataBaseWeek(getApplicationContext());
         selection = (TextView) findViewById(R.id.selection);
 
         arguments = getIntent().getExtras();
@@ -90,6 +95,12 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         };
         msName.setOnItemSelectedListener(itemSelectedListener);
 
+        dbweek = dbWeekHelper.getReadableDatabase();
+        weekCursor=dbweek.rawQuery("select  * from "
+                + DataBaseWeek.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+        weekCursor.moveToFirst();
+        weekResult=Integer.parseInt(weekCursor.getString(4));
+        week.setText(String.valueOf(weekResult));
 
 
         money.addTextChangedListener(new TextWatcher() {
@@ -129,13 +140,17 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                    weekResult = arguments.getInt("price");
 
                 }else{
-                    weekResult=15000;
+
+                    dbweek = dbWeekHelper.getReadableDatabase();
+                    weekCursor=dbweek.rawQuery("select  * from "
+                                    + DataBaseWeek.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+                    weekCursor.moveToFirst();
+                    weekResult=Integer.parseInt(weekCursor.getString(4));
                 }
 
-               // setContentView(textView);
+
                weekResult=Integer.parseInt( s.toString())*weekResult;
-                TextView textView2 = (TextView) findViewById(R.id.week);
-                textView2.setText(String.valueOf(weekResult));
+                week.setText(String.valueOf(weekResult));
 
                 momResult=Integer.parseInt(s.toString())*10000;
                 TextView textView3=(TextView)findViewById(R.id.momme);
@@ -180,9 +195,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 weekResult=Integer.parseInt(week.getText().toString());
-            /*    TextView textView=(TextView)findViewById(R.id.end);
-              summResult=summResult-weekResult;
-                textView.setText(String.valueOf(summResult));*/
+
             }
 
             @Override
@@ -289,6 +302,11 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 headerView.setText("Недельные");
                 Intent intent1 = new Intent(this, WeekActivity.class);
                 startActivity(intent1);
+                return true;
+            case R.id.add_foodCalculation:
+                headerView.setText("Еда");
+                Intent intent2 = new Intent(this, WeekActivity.class);
+                startActivity(intent2);
                 return true;
 
         }
