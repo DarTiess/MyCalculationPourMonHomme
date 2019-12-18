@@ -45,4 +45,9 @@ public class StartupActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void onClickHoliday(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

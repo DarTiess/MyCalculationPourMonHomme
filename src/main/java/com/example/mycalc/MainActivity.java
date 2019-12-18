@@ -31,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
     TextView food;
     TextView week;
     EditText deposit;
+    EditText deposit2;
     EditText nz;
     TextView momme;
     protected int summResult;
     protected int foodResult;
     protected int weekResult;
     protected int depositResult;
+    protected int depositResult2;
     protected int moneyResult;
     protected int nzResult;
     protected int momResult;
@@ -50,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
     DataBaseWeek dbWeekHelper;
     SQLiteDatabase dbweek;
     Cursor weekCursor;
-    SimpleCursorAdapter weekAdapter;
+
+    DataBaseDeposit dbDepositHelper;
+    SQLiteDatabase dbdeposit;
+    Cursor depositCursor;
 
     Bundle arguments;
     @Override
@@ -65,12 +70,14 @@ monse=(EditText)findViewById(R.id.monse);
 food=(TextView)findViewById(R.id.food);
  week=(TextView)findViewById(R.id.week);
 deposit=(EditText)findViewById(R.id.deposit);
+        deposit2=(EditText)findViewById(R.id.deposit2);
 nz=(EditText)findViewById(R.id.nz);
 momme=(TextView)findViewById(R.id.momme);
 //calculList=(ListView)findViewById(R.id.list);
 
 dbHelper=new DatabaseHelper(getApplicationContext());
         dbWeekHelper=new DataBaseWeek(getApplicationContext());
+        dbDepositHelper=new DataBaseDeposit(getApplicationContext());
         selection = (TextView) findViewById(R.id.selection);
 
         arguments = getIntent().getExtras();
@@ -82,8 +89,6 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                // Получаем выбранный объект
                 String item = (String)parent.getItemAtPosition(position);
                 selection.setText(item);
             }
@@ -124,9 +129,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
 
         monse.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -156,72 +159,40 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 TextView textView3=(TextView)findViewById(R.id.momme);
                 textView3.setText(String.valueOf(momResult));
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
 
 
       food.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                foodResult=Integer.parseInt(food.getText().toString());
-
- /*TextView textView=(TextView)findViewById(R.id.end);
- summResult=summResult-foodResult;
- textView.setText(String.valueOf(summResult));*/
-            }
-
-
-            public void afterTextChanged(Editable s) {
-
-            }
+                foodResult=Integer.parseInt(food.getText().toString());}
+            public void afterTextChanged(Editable s) {}
         });
 
-    week.addTextChangedListener(new TextWatcher() {
+       week.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 weekResult=Integer.parseInt(week.getText().toString());
-
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
-        momme.addTextChangedListener(new TextWatcher() {
+         momme.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                momResult=Integer.parseInt(momme.getText().toString());
-            /*    TextView textView=(TextView)findViewById(R.id.end);
-              summResult=summResult-weekResult;
-                textView.setText(String.valueOf(summResult));*/
-            }
-
+                momResult=Integer.parseInt(momme.getText().toString());}
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         deposit.addTextChangedListener(new TextWatcher() {
@@ -235,10 +206,6 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             {
 
                 depositResult=Integer.parseInt(deposit.getText().toString());
-           /*     TextView textView=(TextView)findViewById(R.id.end);
-                summResult=summResult-depositResult;
-                textView.setText(String.valueOf(summResult));*/
-
 
             }
 
@@ -246,6 +213,17 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             public void afterTextChanged(Editable s) {
 
             }
+        });
+        deposit2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                depositResult2=Integer.parseInt(deposit2.getText().toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
         nz.addTextChangedListener(new TextWatcher() {
             @Override
@@ -258,9 +236,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             {
 
                nzResult=Integer.parseInt(nz.getText().toString());
-           /*     TextView textView=(TextView)findViewById(R.id.end);
-                summResult=summResult-depositResult;
-                textView.setText(String.valueOf(summResult));*/
+
 
 
             }
@@ -308,13 +284,18 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 Intent intent2 = new Intent(this, WeekActivity.class);
                 startActivity(intent2);
                 return true;
+            case R.id.deposit_List:
+                headerView.setText("Депозит");
+                Intent intent3 = new Intent(this, DepositListActivity.class);
+                startActivity(intent3);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
     }
     public void onClickGetResult(View view) {
 
-       int summResult2=summResult-(foodResult+weekResult+depositResult+nzResult+momResult);
+       int summResult2=summResult-(foodResult+weekResult+depositResult+depositResult2+nzResult+momResult);
         end.setText(String.valueOf(summResult2));
 
         TextView foodPourCent=(TextView)findViewById(R.id.foodPourCent);
@@ -329,6 +310,9 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         TextView depositPourCent=(TextView)findViewById(R.id.depositPourCent);
        depositPourCent.setText(String.valueOf((100*depositResult)/summResult) +"%");
 
+        TextView depositPourCent2=(TextView)findViewById(R.id.deposit2PourCent);
+        depositPourCent2.setText(String.valueOf((100*depositResult2)/summResult) +"%");
+
         TextView nzPourCent=(TextView)findViewById(R.id.nzPourCent);
        nzPourCent.setText(String.valueOf((100*nzResult)/summResult) +"%");
 
@@ -336,125 +320,53 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         endPourCent.setText(String.valueOf((100*summResult2)/summResult) +"%");
     }
     private final static String FILE_NAME = "calcMine.txt";
-  /*  public void saveText(View view) {
 
-        FileOutputStream fos = null;
-        try {
-
-
-            String text1 ="Приход: "+ money.getText().toString() +"\nИтог: "+end.getText().toString()+"\n";
-
-
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            fos.write(text1.getBytes());
-
-            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
-        }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        } finally{
-            try{
-                if(fos!=null)
-                    fos.close();
-            }
-            catch(IOException ex){
-
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public void openText(View view) {
-
-        FileInputStream fin = null;
-
-        try {
-            fin = openFileInput(FILE_NAME);
-            byte[] bytes = new byte[fin.available()];
-            fin.read(bytes);
-            String text = new String (bytes);
-            end.setText(text);
-        }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        finally{
-
-            try{
-                if(fin!=null)
-                    fin.close();
-            }
-            catch(IOException ex){
-
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-*/
-
-/*
-    public void savedb(View view) {
-        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("appCalc.db", MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS calcul (money INTEGER, endmoney INTEGER)");
-
-       int moneydb=Integer.parseInt(money.getText().toString());
-        db.execSQL("INSERT INTO calcul VALUES ( 20   ,20);");
-    }
-
-    public void opendb(View view) {
-        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("appCalc.db", MODE_PRIVATE, null);
-        Cursor query = db.rawQuery("SELECT * FROM calcul;", null);
-        TextView textView = (TextView) findViewById(R.id.end);
-        if(query.moveToFirst()){
-            do{
-
-                int money = query.getInt(0);
-                int endmoney = query.getInt(1);
-                textView.append(" money: " + money + "endmoney"+endmoney+"\n");
-            }
-            while(query.moveToNext());
-        }
-        query.close();
-        db.close();
-    }*/
     public void onResume() {
         super.onResume();
 
         db = dbHelper.getReadableDatabase();
-
+        dbdeposit = dbDepositHelper.getReadableDatabase();
         calcCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
 
         String[] headers = new String[] {DatabaseHelper.COLUMN_MSNAME, DatabaseHelper.COLUMN_MONEY, DatabaseHelper.COLUMN_ENDMONEY};
 
         calcAdapter = new SimpleCursorAdapter(this, android.R.layout.test_list_item,
                 calcCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
-       // header.setText("Найдено элементов: " + String.valueOf(userCursor.getCount()));
-      //  calculList.setAdapter(calcAdapter);
+
     }
     long Id=0;
+    long Id_=0;
     public void add(View view){
-      //  Intent intent = new Intent(this, CalculatActivity.class);
-       // startActivity(intent);
-
         ContentValues cv = new ContentValues();
         cv.put(DatabaseHelper.COLUMN_MSNAME,  selection.getText().toString());
         cv.put(DatabaseHelper.COLUMN_MONEY, money.getText().toString());
         cv.put(DatabaseHelper.COLUMN_ENDMONEY, Integer.parseInt(end.getText().toString()));
-
         if (Id > 0) {
             db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_ID + "=" + String.valueOf(Id), null);
         } else {
             db.insert(DatabaseHelper.TABLE, null, cv);
         }
+        ContentValues cv_deposit = new ContentValues();
+       dbdeposit = dbDepositHelper.getWritableDatabase();
+        cv_deposit.put(DataBaseDeposit.COLUMN_MONTH, selection.getText().toString());
+        cv_deposit.put(DataBaseDeposit.COLUMN_ADDMONTHLY, deposit2.getText().toString());
+        cv_deposit.put(DataBaseDeposit.COLUMN_TOTALDEPOSIT, deposit2.getText().toString());
+
+        if (Id_> 0) {
+          dbdeposit.update(DataBaseDeposit.TABLE, cv_deposit, DataBaseDeposit.COLUMN_ID+"="+ String.valueOf(Id_), null);
+        } else {
+           dbdeposit.insert(DataBaseDeposit.TABLE, null, cv_deposit);
+        }
+
+
         Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onDestroy(){
         super.onDestroy();
-
+        dbdeposit.close();
         db.close();
         calcCursor.close();
+        depositCursor.close();
     }
 }

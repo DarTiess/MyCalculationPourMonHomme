@@ -160,7 +160,7 @@
         <TableRow>
             <TextView
                 android:layout_weight="0.5"
-                android:text="Депозит :: "
+                android:text="Депозит 1 :: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="textEnd"/>
@@ -175,6 +175,28 @@
                 android:layout_weight="1"
                 android:text="%"
                 android:id="@+id/depositPourCent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Депозит 2 :: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"/>
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/deposit2"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:text="%"
+                android:id="@+id/deposit2PourCent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
