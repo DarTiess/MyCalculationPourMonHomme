@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DepositActivity">
+    android:padding="16dp">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="281dp"
+        android:background="#FFFFFF"
+        android:scaleType="fitEnd"
+        android:src="@drawable/sad" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Месяц  "
+            android:textAlignment="textEnd"/>
+        <EditText
+            android:id="@+id/msName"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Месяц"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Добавлено "
+            android:textAlignment="textEnd"/>
+        <EditText
+            android:id="@+id/money"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Добавлено"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Итог  "
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:id="@+id/endmoney"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Итог"/>
+    </LinearLayout>
+
+
+</LinearLayout>

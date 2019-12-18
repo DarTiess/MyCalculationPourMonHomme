@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected int moneyResult;
     protected int nzResult;
     protected int momResult;
+    protected int depositTotal;
 
   //  ListView calculList;
     DatabaseHelper dbHelper;
@@ -221,6 +222,12 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
                 depositResult2=Integer.parseInt(deposit2.getText().toString());
+
+                depositCursor=dbdeposit.rawQuery("select  * from "
+                        + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+                depositCursor.moveToFirst();
+
+                depositTotal = Integer.parseInt(depositCursor.getString(3)) + depositResult2;
             }
             @Override
             public void afterTextChanged(Editable s) {}
@@ -350,7 +357,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
        dbdeposit = dbDepositHelper.getWritableDatabase();
         cv_deposit.put(DataBaseDeposit.COLUMN_MONTH, selection.getText().toString());
         cv_deposit.put(DataBaseDeposit.COLUMN_ADDMONTHLY, deposit2.getText().toString());
-        cv_deposit.put(DataBaseDeposit.COLUMN_TOTALDEPOSIT, deposit2.getText().toString());
+        cv_deposit.put(DataBaseDeposit.COLUMN_TOTALDEPOSIT,String.valueOf(depositTotal));
 
         if (Id_> 0) {
           dbdeposit.update(DataBaseDeposit.TABLE, cv_deposit, DataBaseDeposit.COLUMN_ID+"="+ String.valueOf(Id_), null);

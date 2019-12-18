@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +18,11 @@ public class DepositListActivity extends AppCompatActivity {
     DataBaseDeposit dbDeposit;
     SQLiteDatabase db;
     Cursor depositCursor;
+    Cursor depositCursor2;
     SimpleCursorAdapter depositAdapter;
+
+    TextView totalDeposit;
+    protected int depositTotal;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +30,13 @@ public class DepositListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deposit_list);
 
 
+
+
         depositList=(ListView)findViewById(R.id.listOfDeposit);
         depositList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), CalculatActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DepositActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }
@@ -41,8 +48,19 @@ public class DepositListActivity extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
-
         db = dbDeposit.getReadableDatabase();
+
+        totalDeposit=(TextView)findViewById(R.id.Total_InDeposit);
+        depositCursor2=db.rawQuery("select  * from "
+                + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+        depositCursor2.moveToFirst();
+
+        depositTotal = Integer.parseInt(depositCursor2.getString(3));
+
+        totalDeposit.setText((String.valueOf(depositTotal))+" : Итог");
+
+
+
 
         depositCursor =  db.rawQuery("select * from "+ DataBaseDeposit.TABLE, null);
 
@@ -54,7 +72,7 @@ public class DepositListActivity extends AppCompatActivity {
         depositList.setAdapter(depositAdapter);
     }
     public void add(View view){
-        Intent intent = new Intent(this, CalculatActivity.class);
+        Intent intent = new Intent(this, DepositActivity.class);
         startActivity(intent);
     }
     @Override
