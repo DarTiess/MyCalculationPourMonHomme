@@ -3,11 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/bretg"
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Total_InDeposit"/>
+        android:id="@+id/Total_InDeposit"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"/>
     <ListView
         android:id="@+id/listOfDeposit"
         android:layout_width="match_parent"

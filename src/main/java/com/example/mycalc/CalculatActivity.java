@@ -19,7 +19,8 @@ public class CalculatActivity extends AppCompatActivity {
     TextView endmoneyBox;
     Button delBut;
     Button saveBut;
-
+ EditText minus_money;
+ int minusOfMoney;
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     Cursor calcCursor;
@@ -38,6 +39,7 @@ public class CalculatActivity extends AppCompatActivity {
         endmoneyBox=(TextView)findViewById(R.id.endmoney);
         delBut=(Button)findViewById(R.id.deleteButton);
         saveBut=(Button)findViewById(R.id.saveButton);
+       minus_money=(EditText)findViewById(R.id.minus);
 
         sqlHelper=new DatabaseHelper(this);
         db=sqlHelper.getWritableDatabase();
@@ -67,7 +69,8 @@ public class CalculatActivity extends AppCompatActivity {
         ContentValues cv = new ContentValues();
         cv.put(DatabaseHelper.COLUMN_MSNAME, msName.getText().toString());
         cv.put(DatabaseHelper.COLUMN_MONEY, moneyBox.getText().toString());
-        cv.put(DatabaseHelper.COLUMN_ENDMONEY, Integer.parseInt(endmoneyBox.getText().toString()));
+        minusOfMoney=Integer.parseInt(endmoneyBox.getText().toString())-Integer.parseInt(minus_money.getText().toString());
+        cv.put(DatabaseHelper.COLUMN_ENDMONEY, String.valueOf(minusOfMoney));
 
         if (Id > 0) {
             db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_ID + "=" + String.valueOf(Id), null);
@@ -78,13 +81,15 @@ public class CalculatActivity extends AppCompatActivity {
     }
     public void delete(View view){
         db.delete(DatabaseHelper.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
-        goHome();
+        Intent intent = new Intent(this, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
     private void goHome(){
 
         db.close();
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, StartupActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

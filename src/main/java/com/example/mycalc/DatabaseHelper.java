@@ -16,6 +16,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
     public static final String COLUMN_MSNAME = "msName";
     public static final String COLUMN_MONEY = "money";
     public static final String COLUMN_ENDMONEY = "endmoney";
+
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, SCHEMA);
     }

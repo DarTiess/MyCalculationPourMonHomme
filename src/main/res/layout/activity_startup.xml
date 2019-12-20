@@ -1,37 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
-    android:paddingTop="?attr/actionBarSize">
+    android:paddingTop="?attr/actionBarSize"
+    android:background="@drawable/sobakaen">
+
+
   <TextView
       android:id="@+id/headers"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="22sp"
       tools:layout_editor_absoluteX="44dp"
-      tools:layout_editor_absoluteY="26dp"
-      />
+      tools:layout_editor_absoluteY="26dp" />
+
+  <TextView
+      android:id="@+id/dateNowDays"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:text="dateNowDays"
+      android:textColor="#778899"
+      android:textSize="15dp" />
+
+  <TextView
+      android:id="@+id/depositBalance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="deposit Balance"
+      android:textSize="20dp" />
+
+  <TextView
+      android:id="@+id/sal_zp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="sals now" />
+
+
+
   <Button
       android:id="@+id/addNewOne"
-      android:layout_width="wrap_content"
-      android:layout_height="53dp"
+      android:layout_width="89dp"
+      android:layout_height="74dp"
       android:onClick="addNewOne"
-      android:text="Add New Calculation" />
+      android:text="Add New Calculation"
+      android:layout_gravity="right"/>
 
-  <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="220dp"
+  <ImageButton
+      android:layout_width="116dp"
+      android:layout_height="70dp"
+      android:layout_gravity="right"
+      android:onClick="onClickDepositList"
       android:scaleType="fitStart"
       android:src="@drawable/hjk" />
-  <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="220dp"
+
+  <ImageButton
+      android:layout_width="114dp"
+      android:layout_height="84dp"
+      android:layout_gravity="right"
+      android:onClick="onClickHoliday"
       android:scaleType="fitStart"
-      android:src="@drawable/holiday"
-      android:clickable="true"
-      android:onClick="onClickHoliday"/>
+      android:src="@drawable/holiday" />
+  <Button
+      android:id="@+id/addOneMore"
+      android:layout_width="89dp"
+      android:layout_height="74dp"
+      android:onClick="addOneMore"
+      android:text="Добавить расход"
+      android:layout_gravity="right"/>
 
 </LinearLayout>

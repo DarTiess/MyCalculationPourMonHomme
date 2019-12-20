@@ -57,7 +57,7 @@ public class DepositListActivity extends AppCompatActivity {
 
         depositTotal = Integer.parseInt(depositCursor2.getString(3));
 
-        totalDeposit.setText((String.valueOf(depositTotal))+" : Итог");
+        totalDeposit.setText(" Итого на счету : "+(String.valueOf(depositTotal)));
 
 
 
