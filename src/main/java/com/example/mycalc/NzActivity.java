@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DepositActivity extends AppCompatActivity {
+public class NzActivity extends AppCompatActivity {
 
     EditText msName;
     EditText moneyBox;
@@ -21,15 +21,14 @@ public class DepositActivity extends AppCompatActivity {
     Button saveBut;
 
 
-    DataBaseDeposit sqlDepositHelper;
+   DataBaseNZ sqlNzHelper;
     SQLiteDatabase db;
-    Cursor depositCursor;
+    Cursor nzCursor;
     long Id=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deposit);
+        setContentView(R.layout.activity_nz);
 
         msName=(EditText)findViewById(R.id.msName);
         moneyBox=(EditText)findViewById(R.id.money);
@@ -37,21 +36,21 @@ public class DepositActivity extends AppCompatActivity {
         delBut=(Button)findViewById(R.id.deleteButton);
         saveBut=(Button)findViewById(R.id.saveButton);
 
-        sqlDepositHelper=new DataBaseDeposit(this);
-        db=sqlDepositHelper.getWritableDatabase();
+        sqlNzHelper=new DataBaseNZ(this);
+        db=sqlNzHelper.getWritableDatabase();
 
         Bundle extras=getIntent().getExtras();
         if(extras!=null){
             Id=extras.getLong("id");
         }
         if(Id>0){
-            depositCursor=db.rawQuery("select * from "+DataBaseDeposit.TABLE+" where "+
-                    DataBaseDeposit.COLUMN_ID + "=?", new String[]{String.valueOf(Id)});
-            depositCursor.moveToFirst();
-            msName.setText(depositCursor.getString(1));
-            moneyBox.setText(depositCursor.getString(2));
-            endmoneyBox.setText(String.valueOf(depositCursor.getInt(3)));
-            depositCursor.close();
+            nzCursor=db.rawQuery("select * from "+DataBaseNZ.TABLE+" where "+
+                    DataBaseNZ.COLUMN_ID + "=?", new String[]{String.valueOf(Id)});
+            nzCursor.moveToFirst();
+            msName.setText(nzCursor.getString(1));
+            moneyBox.setText(nzCursor.getString(2));
+            endmoneyBox.setText(String.valueOf(nzCursor.getInt(3)));
+            nzCursor.close();
         } else {
             goHome();
         }
@@ -62,20 +61,20 @@ public class DepositActivity extends AppCompatActivity {
     }
     public void save(View view){
         ContentValues cv = new ContentValues();
-        cv.put(DataBaseDeposit.COLUMN_MONTH, msName.getText().toString());
-        cv.put(DataBaseDeposit.COLUMN_ADDMONTHLY, moneyBox.getText().toString());
-        cv.put(DataBaseDeposit.COLUMN_TOTALDEPOSIT, Integer.parseInt(endmoneyBox.getText().toString()));
+        cv.put(DataBaseNZ.COLUMN_MONTH, msName.getText().toString());
+        cv.put(DataBaseNZ.COLUMN_ADDNZMONTHLY, moneyBox.getText().toString());
+        cv.put(DataBaseNZ.COLUMN_TOTALNZ, Integer.parseInt(endmoneyBox.getText().toString()));
 
         if (Id > 0) {
-            db.update(DataBaseDeposit.TABLE, cv, DataBaseDeposit.COLUMN_ID + "=" + String.valueOf(Id), null);
+            db.update(DataBaseNZ.TABLE, cv, DataBaseNZ.COLUMN_ID + "=" + String.valueOf(Id), null);
         } else {
-            db.insert(DataBaseDeposit.TABLE, null, cv);
+            db.insert(DataBaseNZ.TABLE, null, cv);
         }
         goHome();
     }
     public void delete(View view){
-        db.delete(DataBaseDeposit.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
-        Intent intent = new Intent(this, DepositListActivity.class);
+        db.delete(DataBaseNZ.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
+        Intent intent = new Intent(this, NzListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
@@ -84,7 +83,7 @@ public class DepositActivity extends AppCompatActivity {
 
         db.close();
 
-        Intent intent = new Intent(this, DepositListActivity.class);
+        Intent intent = new Intent(this, NzListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

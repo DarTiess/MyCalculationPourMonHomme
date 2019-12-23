@@ -20,7 +20,7 @@ public class StartupActivity extends AppCompatActivity {
     SimpleDateFormat formatForMonth;
 
     long id;
-    DataBaseDeposit dbDeposit;
+    DatabaseHelper dbDeposit;
     SQLiteDatabase db;
     Cursor depositCursor2;
     protected int totalInDep;
@@ -29,7 +29,6 @@ public class StartupActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     SQLiteDatabase db2;
     Cursor zpCursor;
-    protected int zpSal;
     TextView zp_;
 
     TextView datenowDays;
@@ -39,7 +38,7 @@ public class StartupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_startup);
 
         deposit_balance=(TextView)findViewById(R.id.depositBalance);
-        zp_ =(TextView)findViewById(R.id.sal_zp);
+
         datenowDays=(TextView)findViewById(R.id.dateNowDays);
 
       dateNow = new Date();
@@ -49,29 +48,18 @@ public class StartupActivity extends AppCompatActivity {
 
 
 
-        dbDeposit=new DataBaseDeposit(getApplicationContext());
-       // dbHelper=new DatabaseHelper(getApplicationContext());
-
+        dbDeposit=new DatabaseHelper(getApplicationContext());
         db = dbDeposit.getReadableDatabase();
-       // db2=dbHelper.getReadableDatabase();
+
 
         depositCursor2=db.rawQuery("select  * from "
-                + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+                + DatabaseHelper.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
         depositCursor2.moveToFirst();
 
         totalInDep=Integer.parseInt(depositCursor2.getString(3));
 
-        deposit_balance.setText("Ваш баланс на счету : "+String.valueOf(totalInDep) +" тг");
+        deposit_balance.setText("Остаток на сегодняшний день : "+String.valueOf(totalInDep) +" тг");
 
-
-     //   dbHelper=new DatabaseHelper(getApplicationContext());
-   //  db2=dbHelper.getReadableDatabase();
-      //  zpCursor=db2.rawQuery("select  * from "
-          //     + DatabaseHelper.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
-      //  zpCursor.moveToFirst();
-
- // zpSal =Integer.parseInt(zpCursor.getString(2));
-  //  zp_.setText(zpCursor.getString(0));
 
     }
 

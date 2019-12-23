@@ -31,11 +31,6 @@ public class DataBaseDeposit extends SQLiteOpenHelper {
                 + " INTEGER, " + COLUMN_TOTALDEPOSIT+" INTEGER);");
 
 
-       /* depositCursor=db.rawQuery("select  * from "
-                + DataBaseWeek.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
-      depositCursor.moveToFirst();
-       int depositTotal=Integer.parseInt(depositCursor.getString(3));*/
-
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_MONTH + ", "+ COLUMN_ADDMONTHLY
                 + ", "+ COLUMN_TOTALDEPOSIT
                 + ") VALUES ('januar',6000,12500);");

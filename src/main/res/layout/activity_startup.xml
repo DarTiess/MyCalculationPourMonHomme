@@ -34,13 +34,6 @@
       android:text="deposit Balance"
       android:textSize="20dp" />
 
-  <TextView
-      android:id="@+id/sal_zp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="sals now" />
-
-
 
   <Button
       android:id="@+id/addNewOne"
@@ -58,13 +51,48 @@
       android:scaleType="fitStart"
       android:src="@drawable/hjk" />
 
-  <ImageButton
-      android:layout_width="114dp"
-      android:layout_height="84dp"
-      android:layout_gravity="right"
-      android:onClick="onClickHoliday"
-      android:scaleType="fitStart"
-      android:src="@drawable/holiday" />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+    android:text="Цели : "
+    android:layout_gravity="right"
+    android:textSize="23dp"
+    android:textColor="#FAF0E6"/>
+  <ScrollView
+      android:layout_width="wrap_content"
+      android:layout_height="160dp"
+      android:layout_gravity="right">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+      <ImageButton
+          android:layout_width="114dp"
+          android:layout_height="84dp"
+          android:layout_gravity="right"
+          android:onClick="onClickHoliday"
+          android:scaleType="fitStart"
+          android:src="@drawable/holiday" />
+      <ImageButton
+          android:layout_width="match_parent"
+          android:layout_height="85dp"
+          android:layout_gravity="right"
+          android:onClick="onClickHoliday"
+          android:scaleType="fitStart"
+          android:src="@drawable/cardog"/>
+      <ImageButton
+          android:layout_width="match_parent"
+          android:layout_height="84dp"
+          android:layout_gravity="right"
+          android:onClick="onClickHoliday"
+          android:scaleType="centerInside"
+          android:src="@drawable/appartament" />
+    </LinearLayout>
+  </ScrollView>
+
+
   <Button
       android:id="@+id/addOneMore"
       android:layout_width="89dp"

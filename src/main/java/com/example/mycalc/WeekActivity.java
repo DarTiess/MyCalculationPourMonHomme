@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,10 +76,13 @@ public class WeekActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(TextUtils.isEmpty(road.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Введите денежную сумму выделенную на дорожные расходы ", Toast.LENGTH_SHORT).show();
 
-                roadIntSum=Integer.parseInt(s.toString())*5;
-                roadSum.setText(String.valueOf(roadIntSum));
-
+                } else {
+                    roadIntSum = Integer.parseInt(s.toString()) * 5;
+                    roadSum.setText(String.valueOf(roadIntSum));
+                }
             }
 
             @Override
@@ -95,10 +99,13 @@ public class WeekActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(TextUtils.isEmpty(lunch.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Введите денежную сумму на обед ", Toast.LENGTH_SHORT).show();
 
-                lunchIntSum=Integer.parseInt(s.toString())*5;
-                lunchSum.setText(String.valueOf(lunchIntSum));
-
+                } else {
+                    lunchIntSum = Integer.parseInt(s.toString()) * 5;
+                    lunchSum.setText(String.valueOf(lunchIntSum));
+                }
             }
 
             @Override
@@ -115,10 +122,13 @@ public class WeekActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(TextUtils.isEmpty(cigarret.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Введите денежную сумму растрат на сигареты ", Toast.LENGTH_SHORT).show();
 
-                cigarreIntSum=Integer.parseInt(s.toString())*5;
-                cigareSum.setText(String.valueOf(cigarreIntSum));
-
+                } else {
+                    cigarreIntSum = Integer.parseInt(s.toString()) * 5;
+                    cigareSum.setText(String.valueOf(cigarreIntSum));
+                }
             }
 
             @Override

@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClientActivity"></activity>
-        <activity android:name=".ServerActivity" />
+        <activity android:name=".NzListActivity" />
+        <activity android:name=".TransferFromNzActivity" />
+        <activity android:name=".NzActivity" />
         <activity android:name=".DepositActivity" />
         <activity android:name=".DepositListActivity" />
         <activity android:name=".WeekActivity" />

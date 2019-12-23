@@ -16,5 +16,8 @@
         android:id="@+id/deposit_List"
         android:orderInCategory="4"
         android:title="Депозит" />
-
+   <item
+    android:id="@+id/nz_List"
+    android:orderInCategory="5"
+    android:title="НЗ" />
 </menu>
