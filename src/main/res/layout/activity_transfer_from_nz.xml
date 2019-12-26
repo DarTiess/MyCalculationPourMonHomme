@@ -6,78 +6,76 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="281dp"
-        android:background="#FFFFFF"
-        android:scaleType="fitCenter"
-        android:src="@drawable/nzmaon" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Месяц  "
-            android:textAlignment="textEnd"/>
-        <EditText
-            android:id="@+id/msName"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint="Месяц"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Добавлено "
-            android:textAlignment="textEnd"/>
-        <EditText
-            android:id="@+id/money"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint="Добавлено"/>
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/transfer"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Итог  "
-            android:textAlignment="textEnd"/>
-        <TextView
-            android:id="@+id/endmoney"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint="Итог"/>
-    </LinearLayout>
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+       >
+    <TableRow>
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <TextView
+            android:layout_weight="0.5"
+            android:text="Перевод с :: "
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сохранить"
-            android:onClick="save"/>
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:id="@+id/selectFrom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Удалить"
-            android:onClick="delete"/>
-    </LinearLayout>
+            android:layout_weight="1">
+        </TextView>
+        <Spinner
+            android:layout_weight="0.8"
+            android:id="@+id/selected_placeFrom"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
+    </TableRow>
+<TableRow>
+        <TextView
+            android:layout_weight="0.5"
+            android:text="Перевод на :: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:id="@+id/selectTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </TextView>
+        <Spinner
+            android:layout_weight="0.8"
+            android:id="@+id/selected_placeTo"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+    </TableRow>
+
+
+    </TableLayout>
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Сумма"
+    android:textSize="20dp"
+    android:padding="15dp"
+    android:gravity="center"
+    android:inputType="number"
+    android:id="@+id/sum_toTransfer"/>
+    <Button
+        android:layout_margin="20dp"
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:onClick="makeTransfer"
+        android:layout_gravity="center"
+        android:text="Перевести"
+        android:background="#DC143C"
+        android:textColor="#FFFFFF"/>
 </LinearLayout>

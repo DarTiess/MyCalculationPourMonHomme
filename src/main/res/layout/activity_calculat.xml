@@ -16,11 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:text="Месяц  "
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textEnd" />
         <EditText
             android:id="@+id/msName"
             android:layout_width="100dp"
@@ -31,11 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:text="ЗП  "
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textEnd" />
         <EditText
             android:id="@+id/money"
             android:layout_width="100dp"
@@ -48,11 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="192dp"
             android:layout_height="wrap_content"
             android:text="Остаток  "
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textEnd" />
         <TextView
             android:id="@+id/endmoney"
             android:layout_width="100dp"
@@ -63,11 +66,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="192dp"
             android:layout_height="wrap_content"
-            android:text="комментарий  "
-            android:textAlignment="textEnd"/>
+            android:hint="комментарий  "
+            android:textAlignment="textEnd" />
         <EditText
             android:id="@+id/minus"
             android:layout_width="100dp"

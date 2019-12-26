@@ -72,7 +72,16 @@ public class NzActivity extends AppCompatActivity {
         }
         goHome();
     }
-    public void delete(View view){
+    public void transfer(View view){
+       /* db.delete(DataBaseNZ.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
+        Intent intent = new Intent(this, NzListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);*/
+        Intent intent = new Intent(this, TransferFromNzActivity.class);
+
+        startActivity(intent);
+    }
+
+    public  void delete(View view){
         db.delete(DataBaseNZ.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
         Intent intent = new Intent(this, NzListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

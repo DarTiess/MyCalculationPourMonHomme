@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,6 +38,39 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id){
+            case R.id.hystory_calculation :
+                Intent intent = new Intent(this, ListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.add_calculation:
+                Intent intent1 = new Intent(this, WeekActivity.class);
+                startActivity(intent1);
+                return true;
+            case R.id.add_foodCalculation:
+                Intent intent2 = new Intent(this, WeekActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.deposit_List:
+                Intent intent3 = new Intent(this, DepositListActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.nz_List:
+                Intent intent4 = new Intent(this, NzListActivity.class);
+                startActivity(intent4);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void onResume() {
         super.onResume();
 

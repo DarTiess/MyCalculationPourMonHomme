@@ -72,12 +72,23 @@
             android:text="Сохранить"
             android:onClick="save"/>
         <Button
-            android:id="@+id/deleteButton"
+            android:id="@+id/transferButton"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:text="Перевести"
+            android:onClick="transfer"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/delete"
             android:text="Удалить"
-            android:onClick="delete"/>
+            android:onClick="delete"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>

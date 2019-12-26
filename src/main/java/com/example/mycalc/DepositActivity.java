@@ -73,6 +73,11 @@ public class DepositActivity extends AppCompatActivity {
         }
         goHome();
     }
+    public void transfer(View view){
+        Intent intent = new Intent(this, TransferFromNzActivity.class);
+
+        startActivity(intent);
+    }
     public void delete(View view){
         db.delete(DataBaseDeposit.TABLE, "_id = ?", new String[]{String.valueOf(Id)});
         Intent intent = new Intent(this, DepositListActivity.class);
