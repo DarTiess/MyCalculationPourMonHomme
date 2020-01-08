@@ -335,7 +335,10 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 Intent intent4 = new Intent(this, NzListActivity.class);
                 startActivity(intent4);
                 return true;
-
+            case R.id.settings:
+                Intent intent5 = new Intent(this, SettingsActivity.class);
+                startActivity(intent5);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -419,6 +422,8 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         }
 
         Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, StartupActivity.class);
+        startActivity(intent2);
     }
     @Override
     public void onDestroy(){

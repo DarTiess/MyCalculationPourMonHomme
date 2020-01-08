@@ -20,4 +20,9 @@
     android:id="@+id/nz_List"
     android:orderInCategory="5"
     android:title="НЗ" />
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="6"
+        android:title="Настройки" />
+
 </menu>

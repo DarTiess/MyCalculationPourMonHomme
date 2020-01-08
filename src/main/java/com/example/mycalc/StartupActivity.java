@@ -22,16 +22,24 @@ public class StartupActivity extends AppCompatActivity {
     SimpleDateFormat formatForMonth;
 
     long id;
-    DatabaseHelper dbDeposit;
+    DatabaseHelper dbHelpre;
     SQLiteDatabase db;
-    Cursor depositCursor2;
-    protected int totalInDep;
+    Cursor dbCursor;
+    protected int totalInPocket;
     TextView deposit_balance;
 
     DatabaseHelper dbHelper;
     SQLiteDatabase db2;
     Cursor zpCursor;
     TextView zp_;
+
+    DataBaseDestination dbDestination;
+    SQLiteDatabase dbDest;
+    Cursor destCursor;
+
+    DataBaseDeposit dbDeposit;
+    SQLiteDatabase db_depos;
+    Cursor depositCursor;
 
     TextView datenowDays;
 
@@ -40,9 +48,6 @@ public class StartupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
-
-       // mSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
-       // mSwipeRefresh.setOnRefreshListener(this);
 
         deposit_balance=(TextView)findViewById(R.id.depositBalance);
 
@@ -55,17 +60,22 @@ public class StartupActivity extends AppCompatActivity {
 
 
 
-        dbDeposit=new DatabaseHelper(getApplicationContext());
-        db = dbDeposit.getReadableDatabase();
+        dbHelpre =new DatabaseHelper(getApplicationContext());
+        db = dbHelpre.getReadableDatabase();
 
+        dbDestination=new DataBaseDestination(getApplicationContext());
+        dbDest=dbDestination.getReadableDatabase();
 
-        depositCursor2=db.rawQuery("select  * from "
+        dbDeposit=new DataBaseDeposit(getApplicationContext());
+        db_depos=dbDeposit.getReadableDatabase();
+
+        dbCursor =db.rawQuery("select  * from "
                 + DatabaseHelper.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
-        depositCursor2.moveToFirst();
+        dbCursor.moveToFirst();
 
-        totalInDep=Integer.parseInt(depositCursor2.getString(3));
+        totalInPocket =Integer.parseInt(dbCursor.getString(3));
 
-        deposit_balance.setText("Остаток на сегодняшний день : "+String.valueOf(totalInDep) +" тг");
+        deposit_balance.setText("Остаток на сегодняшний день : "+String.valueOf(totalInPocket) +" тг");
 
 
     }
@@ -99,6 +109,10 @@ public class StartupActivity extends AppCompatActivity {
                 Intent intent4 = new Intent(this, NzListActivity.class);
                 startActivity(intent4);
                 return true;
+            case R.id.settings:
+                Intent intent5 = new Intent(this, SettingsActivity.class);
+                startActivity(intent5);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
@@ -110,11 +124,19 @@ public class StartupActivity extends AppCompatActivity {
     }
 
     public void onClickHoliday(View view) {
+        destCursor=dbDest.rawQuery("select * from "+DataBaseDestination.TABLE+" where "+
+                DataBaseDestination.COLUMN_DEFINITION + "=?", new String[]{"Отпуск"});
+        destCursor.moveToFirst();
 
-        if(totalInDep<600000){
+       depositCursor =db_depos.rawQuery("select  * from "
+                + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+        depositCursor.moveToFirst();
+
+        if(Integer.parseInt(depositCursor.getString(3)) <Integer.parseInt(destCursor.getString(2))){
             Toast.makeText(this, "Для отпуска не хватает средст на счету", Toast.LENGTH_SHORT).show();
 
         }else {
+            Toast.makeText(this, "Поздравляю, вы заслужили оптуск", Toast.LENGTH_SHORT).show();
             Intent intent2 = new Intent(this, DepositListActivity.class);
             startActivity(intent2);
         }
@@ -147,13 +169,51 @@ public class StartupActivity extends AppCompatActivity {
         formatForMonth = new SimpleDateFormat("MM");
         datenowDays.setText("Сегодня " + formatForDateNow.format(dateNow));
 
-        depositCursor2=db.rawQuery("select  * from "
+        dbCursor =db.rawQuery("select  * from "
                 + DatabaseHelper.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
-        depositCursor2.moveToFirst();
+        dbCursor.moveToFirst();
 
-        totalInDep=Integer.parseInt(depositCursor2.getString(3));
+        totalInPocket =Integer.parseInt(dbCursor.getString(3));
 
-        deposit_balance.setText("Остаток на сегодняшний день : "+String.valueOf(totalInDep) +" тг");
+        deposit_balance.setText("Остаток на сегодняшний день : "+String.valueOf(totalInPocket) +" тг");
 
+    }
+
+    public void onClickBuyCar(View view) {
+        destCursor=dbDest.rawQuery("select * from "+DataBaseDestination.TABLE+" where "+
+                DataBaseDestination.COLUMN_DEFINITION + "=?", new String[]{"Машина"});
+        destCursor.moveToFirst();
+
+        depositCursor =db_depos.rawQuery("select  * from "
+                + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+        depositCursor.moveToFirst();
+
+        if(Integer.parseInt(depositCursor.getString(3)) <Integer.parseInt(destCursor.getString(2))){
+            Toast.makeText(this, "Для покупки машины не хватает средст на счету", Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this, "Поздравляю, вы можете купить машину", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(this, DepositListActivity.class);
+            startActivity(intent2);
+        }
+    }
+
+    public void onClickBuyHome(View view) {
+        destCursor=dbDest.rawQuery("select * from "+DataBaseDestination.TABLE+" where "+
+                DataBaseDestination.COLUMN_DEFINITION + "=?", new String[]{"Квартира"});
+        destCursor.moveToFirst();
+
+        depositCursor =db_depos.rawQuery("select  * from "
+                + DataBaseDeposit.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
+        depositCursor.moveToFirst();
+
+        if(Integer.parseInt(depositCursor.getString(3)) <Integer.parseInt(destCursor.getString(2))){
+            Toast.makeText(this, "На квартиру нужно еще копить, не хватает средств...", Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this, "Ура! У нас будет свой дом!", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(this, DepositListActivity.class);
+            startActivity(intent2);
+        }
     }
 }

@@ -77,6 +77,10 @@ public class DepositListActivity extends AppCompatActivity {
                 Intent intent4 = new Intent(this, NzListActivity.class);
                 startActivity(intent4);
                 return true;
+            case R.id.settings:
+                Intent intent5 = new Intent(this, SettingsActivity.class);
+                startActivity(intent5);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);

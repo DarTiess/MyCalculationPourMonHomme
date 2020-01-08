@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+   android:background="@drawable/settin"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сколько мы готовы потратить на:"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="21dp"
+        android:textStyle="italic"/>
+   <GridLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:rowCount="3"
+       android:columnCount="3"
+       >
+       <TextView
+           android:text=" Отпуск : "
+           android:textStyle="bold"
+           android:layout_margin="10dp"/>
+
+       <TextView
+           android:id="@+id/isForHoliday"
+           android:layout_width="wrap_content"/>
+       <EditText
+           android:id="@+id/forHoliday"
+           android:width="120dp"
+           android:textStyle="bold"
+           android:inputType="number"/>
+       <TextView
+           android:text=" Квартиру : "
+           android:textStyle="bold"
+           android:layout_margin="10dp"/>
+
+       <TextView
+           android:id="@+id/isForAppartement"
+           android:layout_width="wrap_content"/>
+       <EditText
+       android:id="@+id/forAppartement"
+       android:width="120dp"
+       android:textStyle="bold"
+       android:inputType="number"/>
+       <TextView
+           android:text=" Машину : "
+           android:textStyle="bold"
+           android:layout_margin="10dp"/>
+
+       <TextView
+           android:id="@+id/isForCar"
+           android:layout_width="wrap_content"/>
+       <EditText
+           android:id="@+id/forCar"
+           android:width="120dp"
+           android:textStyle="bold"
+           android:inputType="number"/>
+   </GridLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сохранить"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        android:onClick="onSaveDetination"
+        />
+
+        <ListView
+            android:id="@+id/destlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           />
+
+
+</LinearLayout>

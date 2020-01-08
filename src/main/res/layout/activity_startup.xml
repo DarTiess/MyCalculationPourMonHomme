@@ -89,14 +89,14 @@
               android:layout_width="match_parent"
               android:layout_height="85dp"
               android:layout_gravity="right"
-              android:onClick="onClickHoliday"
+              android:onClick="onClickBuyCar"
               android:scaleType="fitStart"
               android:src="@drawable/cardog"/>
           <ImageButton
               android:layout_width="match_parent"
               android:layout_height="84dp"
               android:layout_gravity="right"
-              android:onClick="onClickHoliday"
+              android:onClick="onClickBuyHome"
               android:scaleType="centerInside"
               android:src="@drawable/appartament" />
         </LinearLayout>

@@ -157,7 +157,7 @@ public class WeekActivity extends AppCompatActivity {
 
         db = dbHelper.getReadableDatabase();
 
-       weekCursor =  db.rawQuery("select * from "+ DataBaseWeek.TABLE, null);
+        weekCursor =  db.rawQuery("select * from "+ DataBaseWeek.TABLE, null);
 
         String[] headers = new String[] {DataBaseWeek.COLUMN_ROAD, DataBaseWeek.COLUMN_LUNCH, DataBaseWeek.COLUMN_CIGARRE,DataBaseWeek.COLUMN_RESULT_FOR_WEEK};
 
