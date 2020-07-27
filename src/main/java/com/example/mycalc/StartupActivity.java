@@ -113,6 +113,10 @@ public class StartupActivity extends AppCompatActivity {
                 Intent intent5 = new Intent(this, SettingsActivity.class);
                 startActivity(intent5);
                 return true;
+            case R.id.adminPanel:
+                Intent intent6 = new Intent(this, AdminActivity.class);
+                startActivity(intent6);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);

@@ -21,8 +21,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static java.lang.Integer.*;
+
 public class MainActivity extends AppCompatActivity {
-    String[] msNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+
+
 
     Spinner msName;
     TextView selection;
@@ -35,18 +38,17 @@ public class MainActivity extends AppCompatActivity {
     EditText deposit2;
     EditText nz;
     TextView momme;
+
     protected int summResult;
     protected int foodResult;
     protected int weekResult;
     protected int depositResult;
     protected int depositResult2;
-    protected int moneyResult;
     protected int nzResult;
     protected int momResult;
     protected int depositTotal;
     protected int nzTotal;
 
-  //  ListView calculList;
     DatabaseHelper dbHelper;
     SQLiteDatabase db;
     Cursor calcCursor;
@@ -70,50 +72,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      msName=(Spinner)findViewById(R.id.monseName);
-end=(TextView)findViewById(R.id.end);
-money=(EditText)findViewById(R.id.moneyStart);
-monse=(EditText)findViewById(R.id.monse);
-food=(TextView)findViewById(R.id.food);
- week=(TextView)findViewById(R.id.week);
-deposit=(EditText)findViewById(R.id.deposit);
-        deposit2=(EditText)findViewById(R.id.deposit2);
-nz=(EditText)findViewById(R.id.nz);
-momme=(TextView)findViewById(R.id.momme);
-//calculList=(ListView)findViewById(R.id.list);
+         msName=findViewById(R.id.monseName);
+        end=findViewById(R.id.end);
+        money=findViewById(R.id.moneyStart);
+        monse=findViewById(R.id.monse);
+        food=findViewById(R.id.food);
+        week=findViewById(R.id.week);
+        deposit=findViewById(R.id.deposit);
+        deposit2=findViewById(R.id.deposit2);
+        nz=findViewById(R.id.nz);
+        momme=findViewById(R.id.momme);
 
-dbHelper=new DatabaseHelper(getApplicationContext());
+
+        dbHelper=new DatabaseHelper(getApplicationContext());
         dbWeekHelper=new DataBaseWeek(getApplicationContext());
         dbDepositHelper=new DataBaseDeposit(getApplicationContext());
         dbNzHelper=new DataBaseNZ(getApplicationContext());
 
-        selection = (TextView) findViewById(R.id.selection);
 
         arguments = getIntent().getExtras();
+        selection = findViewById(R.id.selection);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, msNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-         msName.setAdapter(adapter);
-
-        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String)parent.getItemAtPosition(position);
-                selection.setText(item);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        };
-        msName.setOnItemSelectedListener(itemSelectedListener);
+        adapterListener(msName, selection);
 
         dbweek = dbWeekHelper.getReadableDatabase();
         weekCursor=dbweek.rawQuery("select  * from "
                 + DataBaseWeek.TABLE+" ORDER BY _ID DESC LIMIT 1", null);
         weekCursor.moveToFirst();
-        weekResult=Integer.parseInt(weekCursor.getString(4));
+        weekResult= parseInt(weekCursor.getString(4));
         week.setText(String.valueOf(weekResult));
 
 
@@ -125,12 +111,12 @@ dbHelper=new DatabaseHelper(getApplicationContext());
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                TextView textView = (TextView) findViewById(R.id.end);
+                TextView textView = findViewById(R.id.end);
                 if(TextUtils.isEmpty(money.getText().toString())){
                      Toast.makeText(getApplicationContext(), "Введите денежную сумму ", Toast.LENGTH_SHORT).show();
 
                  } else{
-                    summResult=Integer.parseInt( s.toString());
+                    summResult= parseInt( s.toString());
                     textView.setText(String.valueOf(summResult));
                  }
 
@@ -152,8 +138,8 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                     Toast.makeText(getApplicationContext(), "Введите колличество недель в текущем месяце ", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    foodResult = Integer.parseInt(s.toString()) * 15000;
-                    TextView textView = (TextView) findViewById(R.id.food);
+                    foodResult = parseInt(s.toString()) * 15000;
+                    TextView textView =  findViewById(R.id.food);
                     textView.setText(String.valueOf(foodResult));
 
                     if (arguments != null) {
@@ -166,15 +152,15 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                         weekCursor = dbweek.rawQuery("select  * from "
                                 + DataBaseWeek.TABLE + " ORDER BY _ID DESC LIMIT 1", null);
                         weekCursor.moveToFirst();
-                        weekResult = Integer.parseInt(weekCursor.getString(4));
+                        weekResult = parseInt(weekCursor.getString(4));
                     }
 
 
-                    weekResult = Integer.parseInt(s.toString()) * weekResult;
+                    weekResult = parseInt(s.toString()) * weekResult;
                     week.setText(String.valueOf(weekResult));
 
-                    momResult = Integer.parseInt(s.toString()) * 10000;
-                    TextView textView3 = (TextView) findViewById(R.id.momme);
+                    momResult = parseInt(s.toString()) * 10000;
+                    TextView textView3 =  findViewById(R.id.momme);
                     textView3.setText(String.valueOf(momResult));
                 }
             }
@@ -182,42 +168,14 @@ dbHelper=new DatabaseHelper(getApplicationContext());
             public void afterTextChanged(Editable s) {}
         });
 
-
-
-      food.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                foodResult=Integer.parseInt(food.getText().toString());}
-            public void afterTextChanged(Editable s) {}
-        });
-
-       week.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                weekResult=Integer.parseInt(week.getText().toString());
-            }
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-         momme.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                momResult=Integer.parseInt(momme.getText().toString());}
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
+     textChangeListener(food);
+     textChangeListener(week);
+     textChangeListener(momme);
 
         deposit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                depositResult=0;
             }
 
             @Override
@@ -226,8 +184,9 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 if(TextUtils.isEmpty(deposit.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Введите денежную сумму перечисленную на депозит 1", Toast.LENGTH_SHORT).show();
 
+
                 } else {
-                    depositResult = Integer.parseInt(deposit.getText().toString());
+                    depositResult = parseInt(deposit.getText().toString());
                 }
             }
 
@@ -238,29 +197,34 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         });
         deposit2.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                depositResult2 = 0;
+            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(deposit2.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Введите денежную сумму перечисленную на депозит 2", Toast.LENGTH_SHORT).show();
-
+                    depositResult2 = 0;
                 } else {
-                    depositResult2 = Integer.parseInt(deposit2.getText().toString());
-
+                    depositResult2 = parseInt(deposit2.getText().toString());
+                }
                     depositCursor = dbdeposit.rawQuery("select  * from "
                             + DataBaseDeposit.TABLE + " ORDER BY _ID DESC LIMIT 1", null);
                     depositCursor.moveToFirst();
 
-                    depositTotal = Integer.parseInt(depositCursor.getString(3)) + depositResult2;
+                    depositTotal = parseInt(depositCursor.getString(3)) + depositResult2;
+
                 }
-            }
+
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        nzResult=0;
         nz.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                nzResult=0;
             }
 
             @Override
@@ -270,34 +234,62 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                     Toast.makeText(getApplicationContext(), "Введите денежную сумму НЗ ", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    nzResult = Integer.parseInt(nz.getText().toString());
-
+                    nzResult = parseInt(nz.getText().toString());
+                }
                    nzCursor = dbNZ.rawQuery("select  * from "
                             + DataBaseNZ.TABLE + " ORDER BY _ID DESC LIMIT 1", null);
                     nzCursor.moveToFirst();
 
-                    nzTotal = Integer.parseInt(nzCursor.getString(3)) + nzResult;
+                    nzTotal = parseInt(nzCursor.getString(3)) + nzResult;
                 }
 
 
-            }
+
 
             @Override
             public void afterTextChanged(Editable s) {
 
             }
         });
-       /* BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);*/
+
     }
 
+
+    public void textChangeListener(final TextView textView){
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                parseInt(textView.getText().toString());
+            }
+            public void afterTextChanged(Editable s) {}
+        });
+
+    }
+
+    public void adapterListener(Spinner spinner, final TextView textView) {
+
+        String[] monse = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, monse);
+        spinner.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) parent.getItemAtPosition(position);
+                textView.setText(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
+       spinner.setOnItemSelectedListener(itemSelectedListener);
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -308,7 +300,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        TextView headerView = (TextView) findViewById(R.id.header);
+        TextView headerView =findViewById(R.id.header);
         switch(id){
             case R.id.hystory_calculation :
                 headerView.setText("История ");
@@ -347,29 +339,32 @@ dbHelper=new DatabaseHelper(getApplicationContext());
        int summResult2=summResult-(foodResult+weekResult+depositResult+depositResult2+nzResult+momResult);
         end.setText(String.valueOf(summResult2));
 
-        TextView foodPourCent=(TextView)findViewById(R.id.foodPourCent);
-        foodPourCent.setText(String.valueOf((100*foodResult)/summResult) +"%");
+        TextView foodPourCent=findViewById(R.id.foodPourCent);
+        foodPourCent.setText(calculatePourcent(foodResult,summResult));
 
-        TextView weekPourCent=(TextView)findViewById(R.id.weekPourCent);
-        weekPourCent.setText(String.valueOf((100*weekResult)/summResult) +"%");
+        TextView weekPourCent=findViewById(R.id.weekPourCent);
+        weekPourCent.setText(calculatePourcent(weekResult,summResult));
 
-        TextView momPourCent=(TextView)findViewById(R.id.momPourCent);
-        momPourCent.setText(String.valueOf((100*momResult)/summResult) +"%");
+        TextView momPourCent=findViewById(R.id.momPourCent);
+        momPourCent.setText(calculatePourcent(momResult,summResult));
 
-        TextView depositPourCent=(TextView)findViewById(R.id.depositPourCent);
-       depositPourCent.setText(String.valueOf((100*depositResult)/summResult) +"%");
+        TextView depositPourCent=findViewById(R.id.depositPourCent);
+       depositPourCent.setText(calculatePourcent(depositResult,summResult));
 
-        TextView depositPourCent2=(TextView)findViewById(R.id.deposit2PourCent);
-        depositPourCent2.setText(String.valueOf((100*depositResult2)/summResult) +"%");
+        TextView depositPourCent2=findViewById(R.id.deposit2PourCent);
+        depositPourCent2.setText(calculatePourcent(depositResult2,summResult));
 
-        TextView nzPourCent=(TextView)findViewById(R.id.nzPourCent);
-       nzPourCent.setText(String.valueOf((100*nzResult)/summResult) +"%");
+        TextView nzPourCent=findViewById(R.id.nzPourCent);
+       nzPourCent.setText(calculatePourcent(nzResult,summResult));
 
-        TextView endPourCent=(TextView)findViewById(R.id.resultPourCent);
-        endPourCent.setText(String.valueOf((100*summResult2)/summResult) +"%");
+        TextView endPourCent=findViewById(R.id.resultPourCent);
+        endPourCent.setText(calculatePourcent(summResult2,summResult));
     }
-    private final static String FILE_NAME = "calcMine.txt";
 
+    public String calculatePourcent(int firstvalue, int totalSumm){
+
+        return (100 * firstvalue) / totalSumm +"%";
+    }
     public void onResume() {
         super.onResume();
 
@@ -384,15 +379,16 @@ dbHelper=new DatabaseHelper(getApplicationContext());
                 calcCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
 
     }
+
     long Id=0;
     long Id_=0;
     public void add(View view){
         ContentValues cv = new ContentValues();
         cv.put(DatabaseHelper.COLUMN_MSNAME,  selection.getText().toString());
         cv.put(DatabaseHelper.COLUMN_MONEY, money.getText().toString());
-        cv.put(DatabaseHelper.COLUMN_ENDMONEY, Integer.parseInt(end.getText().toString()));
+        cv.put(DatabaseHelper.COLUMN_ENDMONEY, parseInt(end.getText().toString()));
         if (Id > 0) {
-            db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_ID + "=" + String.valueOf(Id), null);
+            db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_ID + "=" + (Id), null);
         } else {
             db.insert(DatabaseHelper.TABLE, null, cv);
         }
@@ -404,7 +400,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         cv_deposit.put(DataBaseDeposit.COLUMN_TOTALDEPOSIT,String.valueOf(depositTotal));
 
         if (Id_> 0) {
-          dbdeposit.update(DataBaseDeposit.TABLE, cv_deposit, DataBaseDeposit.COLUMN_ID+"="+ String.valueOf(Id_), null);
+          dbdeposit.update(DataBaseDeposit.TABLE, cv_deposit, DataBaseDeposit.COLUMN_ID+"="+ (Id_), null);
         } else {
            dbdeposit.insert(DataBaseDeposit.TABLE, null, cv_deposit);
         }
@@ -416,7 +412,7 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         cv_nz.put(DataBaseNZ.COLUMN_TOTALNZ,String.valueOf(nzTotal));
 
         if (Id_> 0) {
-            dbNZ.update(DataBaseNZ.TABLE, cv_nz, DataBaseNZ.COLUMN_ID+"="+ String.valueOf(Id_), null);
+            dbNZ.update(DataBaseNZ.TABLE, cv_nz, DataBaseNZ.COLUMN_ID+"="+ (Id_), null);
         } else {
             dbNZ.insert(DataBaseNZ.TABLE, null, cv_nz);
         }
@@ -431,8 +427,8 @@ dbHelper=new DatabaseHelper(getApplicationContext());
         dbdeposit.close();
         db.close();
         dbNZ.close();
-        calcCursor.close();
-        depositCursor.close();
-        nzCursor.close();
+      //  calcCursor.close();
+        //depositCursor.close();
+      //  nzCursor.close();
     }
 }

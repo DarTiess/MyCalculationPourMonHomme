@@ -29,7 +29,11 @@ public class DataBaseDestination extends SQLiteOpenHelper {
                 + " INTEGER);");
 
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_DEFINITION + ", "+ COLUMN_VALUE
-                 + ") VALUES ('doggy', 40000);");
+                 + ") VALUES ('Отпуск', 40000);");
+        db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_DEFINITION + ", "+ COLUMN_VALUE
+                + ") VALUES ('Квартира', 40000);");
+        db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_DEFINITION + ", "+ COLUMN_VALUE
+                + ") VALUES ('Машина', 40000);");
 
     }
 
